@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ff5c8a">
+<title>إلى ملوكتي ❤️</title>
+<style>
+*{box-sizing:border-box} 
+body{margin:0;min-height:100vh;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#fff;
+background:radial-gradient(circle at 50% 20%,#ffb3c9 0,#f65b8b 38%,#8e2458 100%);
+display:grid;place-items:center;text-align:center}
+main{position:relative;z-index:2;width:min(92%,560px);padding:28px 22px}
+h1{font-size:clamp(2rem,8vw,3.5rem);margin:0 0 8px;text-shadow:0 4px 18px #8b174b66}
+.sub{font-size:1.05rem;opacity:.95;margin:0 0 24px}
+.heart-card{margin:0 auto 22px;width:min(82vw,330px);aspect-ratio:1;display:grid;place-items:center;position:relative;filter:drop-shadow(0 14px 24px #76113d66)}
+.heart{font-size:clamp(170px,55vw,260px);line-height:1;color:#ffedf3;position:absolute;animation:pulse 1.5s infinite}
+.message{position:relative;color:#d92f68;font-weight:800;font-size:clamp(1.1rem,5vw,1.55rem);padding:0 18px;line-height:1.5}
+.counter{background:#ffffff22;border:1px solid #ffffff55;backdrop-filter:blur(8px);border-radius:22px;padding:18px 14px;box-shadow:0 10px 35px #65133e33}
+.counter h2{margin:0 0 12px;font-size:1.15rem}
+.units{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.unit{background:#ffffff20;border-radius:14px;padding:12px 4px}
+.num{display:block;font-size:clamp(1.4rem,6vw,2rem);font-weight:800;font-variant-numeric:tabular-nums}
+.label{font-size:.8rem;opacity:.9}
+.since{margin:12px 0 0;font-size:.9rem;opacity:.9}
+.float{position:fixed;bottom:-50px;z-index:1;animation:rise linear infinite;opacity:.75;pointer-events:none}
+@keyframes pulse{50%{transform:scale(1.08)}}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+footer{margin-top:18px;font-size:.85rem;opacity:.9}
+</style>
+</head>
+<body>
+<main>
+  <h1>إلى ملوكتي ❤️</h1>
+  <p class="sub">كل لحظة معاكي حكاية بحب أعيشها من جديد</p>
+  <div class="heart-card">
+    <div class="heart">♥</div>
+    <div class="message">بحبك يا ملوكتي<br>🏡♥️</div>
+  </div>
+  <section class="counter">
+    <h2>بقالنا مع بعض</h2>
+    <div class="units">
+      <div class="unit"><span class="num" id="days">0</span><span class="label">يوم</span></div>
+      <div class="unit"><span class="num" id="hours">0</span><span class="label">ساعة</span></div>
+      <div class="unit"><span class="num" id="minutes">0</span><span class="label">دقيقة</span></div>
+      <div class="unit"><span class="num" id="seconds">0</span><span class="label">ثانية</span></div>
+    </div>
+    <p class="since">من يوم 21 مارس 2026 ❤️</p>
+  </section>
+  <footer>وكل يوم بيعدّي، بحبك أكتر ♥</footer>
+</main>
+<script>
+const start = new Date(2026, 2, 21, 0, 0, 0);
+const ids = ["days","hours","minutes","seconds"];
+function update(){
+  let diff = Math.max(0, Date.now() - start.getTime());
+  const values = [
+    Math.floor(diff / 86400000),
+    Math.floor(diff / 3600000) % 24,
+    Math.floor(diff / 60000) % 60,
+    Math.floor(diff / 1000) % 60
+  ];
+  ids.forEach((id,i)=>document.getElementById(id).textContent=values[i].toLocaleString("ar-EG"));
+}
+update(); setInterval(update,1000);
+for(let i=0;i<24;i++){
+  const h=document.createElement("div");h.className="float";h.textContent=["♥","♡","💗","💕"][i%4];
+  h.style.left=(Math.random()*100)+"vw";h.style.fontSize=(18+Math.random()*30)+"px";
+  h.style.animationDuration=(8+Math.random()*12)+"s";h.style.animationDelay=(-Math.random()*18)+"s";
+  document.body.appendChild(h);
+}
+</script>
+</body>
+</html>
